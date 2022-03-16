@@ -20,6 +20,7 @@ export const WeatherImage = styled.Image`
 export const WeatherDateLabel = styled.Text`
   font-size: ${THEME.FONT_SIZES.SM};
   color: ${THEME.COLORS.DARK_TEXT};
+  margin-right: 24px;
 `;
 
 export const WeatherTemperatureLabel = styled.Text`

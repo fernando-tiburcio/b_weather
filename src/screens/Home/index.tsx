@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator, Text } from "react-native";
+import { ActivityIndicator, Alert, Text } from "react-native";
+import * as Location from 'expo-location';
 
 import api from "../../services/api";
 import {
   IWeather,
   IHourlyWeather,
   IDailyWeather,
-  ILocalizationProps,
 } from "../../interfaces";
 
 import { Header } from "../../components/Header";
@@ -29,13 +29,19 @@ export default function Home() {
   const [localization, setLocalization] = useState('');
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
 
+  const getGeoLocation = async () => {
+    const local = await Location.getCurrentPositionAsync();
+    return local;
+  };
+
   const weatherData = async () => {
+    const location = await getGeoLocation();
     const response = await api.get(
       "https://api.openweathermap.org/data/2.5/onecall",
       {
         params: {
-          lat: "-16.42134",
-          lon: "-39.05479",
+          lat: location.coords.latitude,
+          lon: location.coords.longitude,
           appid: "ab29605c1d70f56b81f1a0ec66045448",
           units: "metric",
           lang: "pt_br",
@@ -48,10 +54,11 @@ export default function Home() {
       "https://api.openweathermap.org/geo/1.0/reverse",
       {
         params: {
-          lat: "-16.42134",
-          lon: "-39.05479",
+          lat: location.coords.latitude,
+          lon: location.coords.longitude,
           appid: "ab29605c1d70f56b81f1a0ec66045448",
           limit: 3,
+          lang: "pt_br",
         },
       }
     );
