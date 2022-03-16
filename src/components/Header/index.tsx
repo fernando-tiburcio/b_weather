@@ -2,11 +2,11 @@ import React from 'react';
 
 import { Container, Title } from './styles';
 
-export function Header(){
+export function Header({localName}: string){
   return (
     <Container>
       <Title>
-        Montes Claros
+        {localName}
       </Title>
     </Container>
   );

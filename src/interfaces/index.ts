@@ -39,6 +39,12 @@ export interface IDict {
   [key: string]: any;
 }
 
+export interface ILocalizationProps {
+  name: string;
+  country: string;
+  state: string;
+}
+
 interface IDailyProps {
   max: number;
   min: number;
