@@ -26,7 +26,7 @@ export default function Home() {
   const [currentWeather, setCurrentWeather] = useState<IWeather>();
   const [hourlyWeather, setHourlyWeather] = useState<IHourlyWeather>();
   const [dailyWeather, setDailyWeather] = useState<IDailyWeather>();
-  const [localization, setLocalization] = useState<string>('');
+  const [localization, setLocalization] = useState('');
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
 
   const weatherData = async () => {
@@ -56,7 +56,7 @@ export default function Home() {
       }
     );
 
-    if (response.data && weatherApiLocalization) {
+    if (response.data && weatherApiLocalization.data) {
       setCurrentWeather(response.data.current);
       setHourlyWeather(response.data.hourly.slice(0, 12));
       setDailyWeather(response.data.daily.slice(0, 5));
