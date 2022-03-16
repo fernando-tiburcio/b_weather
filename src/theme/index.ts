@@ -1,10 +1,12 @@
 export default {
   COLORS: {
     BACKGROUND: '#1D5A93',
+    WHITE_BACKGROUND: '#FFFFFF',
+    ALERT: '#E11D48',
+    WARNING: '#FCD34D',
     DARK_TEXT: '#34393E',
     LIGHT_TEXT: '#FFFFFF',
-    ALERT: '#E11D48',
-    WARNING: '#FCD34D'
+    GRADIENT: ['rgba(29,90,147,1)', 'rgba(29,90,147,0.01)'],
   },
   FONTS: {
     REGULAR: 'Roboto_400Regular',
@@ -17,6 +19,6 @@ export default {
     RG: '16px',
     MD: '20px',
     BG: '26px',
-    XL: '32px',
+    XL: '48px',
   },
 };

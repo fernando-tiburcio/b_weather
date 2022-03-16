@@ -1,3 +1,4 @@
+import { Platform } from 'react-native';
 import styled from 'styled-components/native';
 import THEME from '../../theme';
 
@@ -7,10 +8,10 @@ export const Container = styled.View`
     background-color: ${THEME.COLORS.BACKGROUND};
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
+    margin-top: ${Platform.OS === 'android'? '24px' : '0px'};
 `;
 
 export const Title = styled.Text`
-  font-size: 16px;
+  font-size: ${THEME.FONT_SIZES.RG};
   color: ${THEME.COLORS.LIGHT_TEXT};
 `;
