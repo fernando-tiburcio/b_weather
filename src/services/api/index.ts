@@ -1,11 +1,7 @@
-import axios from 'axios';
+import axios from "axios";
 
 const api = axios.create({
-  baseURL: 'https://api.openweathermap.org/data/2.5/onecall',
-  headers: {
-    'content-type': 'application/json',
-    accept: 'application/json',
-  },
+  baseURL: "https://api.openweathermap.org/data/2.5/onecall",
 });
 
 export default api;
