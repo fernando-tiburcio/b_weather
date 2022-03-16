@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
-    "strict": true
+    "strict": true,
+    "types": ["styled-components-react-native"],
   },
-  "include": ["src"],
+  "include": ["src/**/*"],
   "extends": "expo/tsconfig.base"
 }

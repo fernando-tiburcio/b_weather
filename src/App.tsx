@@ -29,7 +29,7 @@ export default function App() {
     <ThemeProvider theme={THEME}>
     <SafeAreaView style={{flex: 1}}>
       <Home />
-      <StatusBar style="dark" translucent backgroundColor="transparent" />
+      <StatusBar style="light" backgroundColor={THEME.COLORS.BACKGROUND} />
     </SafeAreaView>
 
     </ThemeProvider>
