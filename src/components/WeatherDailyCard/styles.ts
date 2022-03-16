@@ -12,8 +12,8 @@ export const Container = styled.View`
 `;
 
 export const WeatherImage = styled.Image`
-  width: 28px;
-  height: 28px;
+  width: 36px;
+  height: 36px;
   margin-right: 16px;
 `;
 

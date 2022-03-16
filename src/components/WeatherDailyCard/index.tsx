@@ -13,7 +13,6 @@ import {
 } from "./styles";
 
 export function WeatherDailyCard({ dailyWeatherData }: IDailyWeather) {
-  console.log("DEBUG dailyWeatherData : ", dailyWeatherData);
   const { dt, weather, temp } = dailyWeatherData;
   const { description, icon } = weather[0];
   return (
