@@ -24,7 +24,7 @@ import {
 
 export const WeatherContainer = ({ currentWeather }: ICurrentWeather) => {
   const {dt, feels_like, temp, weather} = currentWeather;
-  const {description, icon, id, main} = weather[0];
+  const {description, icon} = weather[0];
   return (
     <LinearGradient colors={THEME.COLORS.GRADIENT}>
       <Container>

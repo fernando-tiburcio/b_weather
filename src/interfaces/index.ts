@@ -45,6 +45,10 @@ export interface ILocalizationProps {
   state: string;
 }
 
+export interface IHeaderProps {
+  localName: string;
+}
+
 interface IDailyProps {
   max: number;
   min: number;

@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { ActivityIndicator, Alert, Text } from "react-native";
-import * as Location from 'expo-location';
+import * as Location from "expo-location";
 
 import api from "../../services/api";
 import {
-  IWeather,
+  ICurrentWeather,
   IHourlyWeather,
   IDailyWeather,
 } from "../../interfaces";
@@ -23,10 +23,10 @@ import {
 } from "./styles";
 
 export default function Home() {
-  const [currentWeather, setCurrentWeather] = useState<IWeather>();
+  const [currentWeather, setCurrentWeather] = useState<ICurrentWeather>();
   const [hourlyWeather, setHourlyWeather] = useState<IHourlyWeather>();
   const [dailyWeather, setDailyWeather] = useState<IDailyWeather>();
-  const [localization, setLocalization] = useState('');
+  const [localization, setLocalization] = useState("");
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
 
   const getGeoLocation = async () => {
@@ -95,11 +95,13 @@ export default function Home() {
               Vento e ambiente
             </Text>
             <WindDataContainer>
-              <WindCard
-                icon="50d"
-                dataLabel="Vel. vento"
-                value={`${currentWeather.wind_speed} km/h`}
-              />
+              {currentWeather.wind_speed && (
+                <WindCard
+                  icon="50d"
+                  dataLabel="Vel. vento"
+                  value={`${currentWeather.wind_speed} km/h`}
+                />
+              )}
               <WindCard
                 icon="03d"
                 dataLabel="Visibilidade"

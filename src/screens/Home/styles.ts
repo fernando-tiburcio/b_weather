@@ -1,7 +1,7 @@
 import styled from "styled-components/native";
 import { IViewProps } from "../../interfaces";
 
-export const Container = styled.View<IViewProps>`
+export const Container = styled.View<{isLoaded: boolean}>`
   justify-content: ${({ isLoaded }) => (isLoaded ? "flex-start" : "center")}
   align-items: center;
   flex: 1;
