@@ -9,6 +9,10 @@ export interface ICurrentWeatherProps {
   dt: number;
   feels_like: number;
   temp: number;
+  wind_speed?: string;
+  visibility?: string;
+  uvi?: string;
+  humidity?: string;
   weather: IWeather[];
 }
 
@@ -24,7 +28,7 @@ export interface IDailyWeatherProps {
 }
 
 export interface IHourlyWeather {
-  hourlyWeatherData: ICurrentWeatherProps
+  hourlyWeatherData: ICurrentWeatherProps[]
 }
 
 export interface IDailyWeather {
@@ -52,4 +56,11 @@ export interface IHeaderProps {
 interface IDailyProps {
   max: number;
   min: number;
+}
+
+export interface ILocationProps {
+  coords: {
+    latitude: string;
+    longitude: string;
+  }
 }

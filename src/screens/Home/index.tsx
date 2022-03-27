@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator, Alert, Text } from "react-native";
+import { ActivityIndicator } from "react-native";
 import * as Location from "expo-location";
 
-import { API_KEY } from "@env";
-import api from "../../services/api";
 import {
-  ICurrentWeather,
+  ICurrentWeatherProps,
   IHourlyWeather,
   IDailyWeather,
 } from "../../interfaces";
@@ -22,55 +20,26 @@ import {
   WindDataContainer,
   DailyWeatherContainer,
 } from "./styles";
+import { getWeatherData } from "../../helpers/getWeatherData";
+import { getWeatherApiLocalization } from "../../helpers/getWeatherApiLocalization";
 
 export default function Home() {
-  const [currentWeather, setCurrentWeather] = useState<ICurrentWeather>();
-  const [hourlyWeather, setHourlyWeather] = useState<IHourlyWeather>();
+  const [currentWeather, setCurrentWeather] = useState<ICurrentWeatherProps>();
+  const [hourlyWeather, setHourlyWeather] = useState<ICurrentWeatherProps[]>();
   const [dailyWeather, setDailyWeather] = useState<IDailyWeather>();
   const [localization, setLocalization] = useState("");
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
 
-  const getGeoLocation = async () => {
-    const local = await Location.getCurrentPositionAsync();
-    return local;
-  };
-
   const weatherData = async () => {
-    const location = await getGeoLocation();
-    const response = await api.get(
-      "https://api.openweathermap.org/data/2.5/onecall",
-      {
-        params: {
-          lat: location.coords.latitude,
-          lon: location.coords.longitude,
-          appid: API_KEY,
-          units: "metric",
-          lang: "pt_br",
-          exclude: "minutely,alerts",
-        },
-      }
-    );
+    const location = await Location.getCurrentPositionAsync();
+    const weather = await getWeatherData(location);
+    const weatherLocalization = await getWeatherApiLocalization(location);
 
-    const weatherApiLocalization = await api.get(
-      "https://api.openweathermap.org/geo/1.0/reverse",
-      {
-        params: {
-          lat: location.coords.latitude,
-          lon: location.coords.longitude,
-          appid: API_KEY,
-          limit: 3,
-          lang: "pt_br",
-        },
-      }
-    );
-
-    console.log(response.data);
-
-    if (response.data && weatherApiLocalization.data) {
-      setCurrentWeather(response.data.current);
-      setHourlyWeather(response.data.hourly.slice(0, 12));
-      setDailyWeather(response.data.daily.slice(0, 5));
-      setLocalization(weatherApiLocalization.data[0].name);
+    if (weather.data && weatherLocalization.data) {
+      setCurrentWeather(weather.data.current);
+      setHourlyWeather(weather.data.hourly.slice(0, 12));
+      setDailyWeather(weather.data.daily.slice(0, 5));
+      setLocalization(weatherLocalization.data[0].name);
       setIsLoaded(true);
     }
   };
@@ -84,46 +53,51 @@ export default function Home() {
       {isLoaded && (
         <>
           <Header localName={localization} />
-          <ScrollableContent>
-            <WeatherContainer currentWeather={currentWeather} />
-            <HourlyWeatherList hourlyWeatherData={hourlyWeather} />
-            <SubTitle title="Vento e Ambiente" />
-            <WindDataContainer>
-              {currentWeather.wind_speed && (
-                <WindCard
-                  icon="50d"
-                  dataLabel="Vel. vento"
-                  value={`${currentWeather.wind_speed} km/h`}
-                />
-              )}
-              <WindCard
-                icon="03d"
-                dataLabel="Visibilidade"
-                value={`${currentWeather.visibility} m`}
-              />
-              <WindCard
-                icon="uv-index"
-                dataLabel="Índice Uv"
-                value={currentWeather.uvi}
-              />
-              <WindCard
-                icon="humidity"
-                dataLabel="Umidade"
-                value={`${currentWeather.humidity} %`}
-              />
-            </WindDataContainer>
-            <SubTitle title="Previsão 5 dias" />
-            <DailyWeatherContainer>
-              {dailyWeather
-                ? Object.values(dailyWeather).map((item: any) => (
-                    <WeatherDailyCard key={item.dt} dailyWeatherData={item} />
-                  ))
-                : null}
-            </DailyWeatherContainer>
-          </ScrollableContent>
+          {!isLoaded && <ActivityIndicator size={"large"} color={"blue"} />}
+          {currentWeather && hourlyWeather && (
+              <ScrollableContent>
+                <WeatherContainer currentWeather={currentWeather} />
+                <HourlyWeatherList hourlyWeatherData={hourlyWeather} />
+                <SubTitle title="Vento e Ambiente" />
+                <WindDataContainer>
+                  {currentWeather.wind_speed && (
+                    <WindCard
+                      icon="50d"
+                      dataLabel="Vel. vento"
+                      value={`${currentWeather.wind_speed} km/h`}
+                    />
+                  )}
+                  <WindCard
+                    icon="03d"
+                    dataLabel="Visibilidade"
+                    value={`${currentWeather.visibility} m`}
+                  />
+                  <WindCard
+                    icon="uv-index"
+                    dataLabel="Índice Uv"
+                    value={currentWeather.uvi}
+                  />
+                  <WindCard
+                    icon="humidity"
+                    dataLabel="Umidade"
+                    value={`${currentWeather.humidity} %`}
+                  />
+                </WindDataContainer>
+                <SubTitle title="Previsão 5 dias" />
+                <DailyWeatherContainer>
+                  {dailyWeather
+                    ? Object.values(dailyWeather).map((item: any) => (
+                        <WeatherDailyCard
+                          key={item.dt}
+                          dailyWeatherData={item}
+                        />
+                      ))
+                    : null}
+                </DailyWeatherContainer>
+              </ScrollableContent>
+            )}
         </>
       )}
-      {!isLoaded && <ActivityIndicator size={"large"} color={"blue"} />}
     </Container>
   );
 }

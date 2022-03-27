@@ -22,16 +22,26 @@ import {
   MaxTempDayContainer,
 } from "./styles";
 
-export const WeatherContainer = ({ currentWeather }: ICurrentWeather) => {
-  const {dt, feels_like, temp, weather} = currentWeather;
-  const {description, icon} = weather[0];
+export const WeatherContainer = ({
+  currentWeather: {
+    dt,
+    feels_like,
+    temp,
+    weather: [{
+      description,
+      icon,
+    }],
+  },
+}: ICurrentWeather) => {
   return (
     <LinearGradient colors={THEME.COLORS.GRADIENT}>
       <Container>
         <TemperatureContainer>
           <TemperatureDescription>
             <MainTemperature>{Math.round(temp)}º</MainTemperature>
-            <FeelsLikeTemperature>Sensação {Math.round(feels_like)}º</FeelsLikeTemperature>
+            <FeelsLikeTemperature>
+              Sensação {Math.round(feels_like)}º
+            </FeelsLikeTemperature>
           </TemperatureDescription>
           <TemperatureGraphicalData>
             <WeatherImage source={iconsImport[icon]} />
