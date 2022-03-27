@@ -12,16 +12,16 @@ export interface ICurrentWeatherProps {
   weather: IWeather[];
 }
 
+export interface ICurrentWeather {
+  currentWeather: ICurrentWeatherProps
+};
+
 export interface IDailyWeatherProps {
   dt: number;
   feels_like: number;
   temp: IDailyProps;
   weather: IWeather[];
 }
-
-export interface ICurrentWeather {
-  currentWeather: ICurrentWeatherProps
-};
 
 export interface IHourlyWeather {
   hourlyWeatherData: ICurrentWeatherProps
