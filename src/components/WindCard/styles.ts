@@ -1,9 +1,12 @@
 import styled from "styled-components/native";
 
-export const Container = styled.View`
-  width: 172px;
+export const Container = styled.View.attrs({
+})`
+  width: 48%;
   background-color: ${({theme}) => theme.COLORS.WHITE_BACKGROUND};
+  padding: 12px 0;
   margin-top: 6px;
+  margin-bottom: 12px;
   flex-direction: row;
   justify-content: center;
 `;
@@ -16,7 +19,6 @@ export const WeatherImage = styled.Image`
 
 export const WeatherDataContainer = styled.View`
   align-items: center;
-  justify-content: center;
 `;
 
 export const WeatherDataLabel = styled.Text`

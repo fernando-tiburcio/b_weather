@@ -1,8 +1,9 @@
 import styled from "styled-components/native";
 
 export const Title = styled.Text`
-  margin-top: 40;
-  margin-left: 32;
-  margin-bottom: 8;
+  margin-top: 40px;
+  margin-left: 32px;
+  margin-bottom: 8px;
   color: ${({ theme }) => theme.COLORS.DARK_TEXT};
+  font-family: ${({theme}) => theme.FONTS.MEDIUM};
 `;

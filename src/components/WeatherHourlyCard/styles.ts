@@ -1,6 +1,8 @@
 import styled from 'styled-components/native';
 
-export const Container = styled.SafeAreaView`
+export const Container = styled.SafeAreaView.attrs({
+  elevation: 4
+})`
     width: 80px;
     height: 110px;
     border-radius: 6px;

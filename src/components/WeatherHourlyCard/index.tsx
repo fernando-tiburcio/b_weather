@@ -11,7 +11,7 @@ export function WeatherHourlyCard({ hourlyWeatherData }: IHourlyWeather) {
   const { icon } = weather[0];
 
   return (
-    <Container elevation={3}>
+    <Container>
       <WeatherImage source={iconsImport[icon]} />
       <TemperatureLabel>
         {Math.round(temp)}º

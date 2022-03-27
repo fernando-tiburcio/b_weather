@@ -1,5 +1,4 @@
 import React from "react";
-import { View } from "react-native";
 
 import iconsImport from "../../helpers/iconsImport";
 import { IDailyWeather } from "../../interfaces";
@@ -10,6 +9,7 @@ import {
   WeatherDateLabel,
   WeatherImage,
   WeatherTemperatureLabel,
+  WeatherCard
 } from "./styles";
 
 export function WeatherDailyCard({ dailyWeatherData }: IDailyWeather) {
@@ -17,12 +17,12 @@ export function WeatherDailyCard({ dailyWeatherData }: IDailyWeather) {
   const { description, icon } = weather[0];
   return (
     <Container>
-      <View style={{flexDirection: 'row', alignItems: 'center'}}>
+      <WeatherCard>
         <WeatherImage source={iconsImport[icon]} />
         <WeatherDateLabel>
           {timeToWeekDay(dt)} - {description}
         </WeatherDateLabel>
-      </View>
+      </WeatherCard>
       <WeatherTemperatureLabel>
         {Math.round(temp.max)}º / {Math.round(temp.min)}º
       </WeatherTemperatureLabel>

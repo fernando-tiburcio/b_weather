@@ -109,11 +109,8 @@ export default function Home() {
                 value={`${currentWeather.humidity} %`}
               />
             </WindDataContainer>
-            <DailyWeatherContainer>
             <SubTitle title="Previsão 5 dias" />
-              {/* <Text style={{ color: THEME.COLORS.DARK_TEXT }}>
-                Previsão 5 dias
-              </Text> */}
+            <DailyWeatherContainer>
               {dailyWeather
                 ? Object.values(dailyWeather).map((item: any) => (
                     <WeatherDailyCard key={item.dt} dailyWeatherData={item} />
