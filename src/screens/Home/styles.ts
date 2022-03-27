@@ -5,7 +5,9 @@ export const Container = styled.View<{isLoaded: boolean}>`
   flex: 1;
 `;
 
-export const ScrollableContent = styled.ScrollView`
+export const ScrollableContent = styled.ScrollView.attrs({
+  showsVerticalScrollIndicator: false,
+})`
   flex: 1;
 `;
 

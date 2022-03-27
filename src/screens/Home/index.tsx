@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator } from "react-native";
+import { ActivityIndicator, RefreshControl } from "react-native";
 import * as Location from "expo-location";
 
-import {
-  ICurrentWeatherProps,
-  IDailyWeather,
-} from "../../interfaces";
+import { ICurrentWeatherProps, IDailyWeather } from "../../interfaces";
 
 import { Header } from "../../components/Header";
 import { WeatherContainer } from "../../components/WeatherContainer";
@@ -28,6 +25,7 @@ export default function Home() {
   const [dailyWeather, setDailyWeather] = useState<IDailyWeather>();
   const [localization, setLocalization] = useState("");
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
+  const [refreshing, setRefreshing] = useState(false);
 
   const weatherData = async () => {
     const location = await Location.getCurrentPositionAsync();
@@ -43,6 +41,13 @@ export default function Home() {
     }
   };
 
+  const handleUpdateWeatherData = () => {
+    console.log("refreshing");
+    setRefreshing(true);
+    weatherData();
+    setRefreshing(false);
+  };
+
   useEffect(() => {
     weatherData();
   }, []);
@@ -54,47 +59,51 @@ export default function Home() {
           <Header localName={localization} />
           {!isLoaded && <ActivityIndicator size={"large"} color={"blue"} />}
           {currentWeather && hourlyWeather && (
-              <ScrollableContent>
-                <WeatherContainer currentWeather={currentWeather} />
-                <HourlyWeatherList hourlyWeatherData={hourlyWeather} />
-                <SubTitle title="Vento e Ambiente" />
-                <WindDataContainer>
-                  {currentWeather.wind_speed && (
-                    <WindCard
-                      icon="50d"
-                      dataLabel="Vel. vento"
-                      value={`${currentWeather.wind_speed} km/h`}
-                    />
-                  )}
+            <ScrollableContent
+              refreshControl={
+                <RefreshControl
+                  refreshing={refreshing}
+                  onRefresh={handleUpdateWeatherData}
+                />
+              }
+            >
+              <WeatherContainer currentWeather={currentWeather} />
+              <HourlyWeatherList hourlyWeatherData={hourlyWeather} />
+              <SubTitle title="Vento e Ambiente" />
+              <WindDataContainer>
+                {currentWeather.wind_speed && (
                   <WindCard
-                    icon="03d"
-                    dataLabel="Visibilidade"
-                    value={`${currentWeather.visibility} m`}
+                    icon="50d"
+                    dataLabel="Vel. vento"
+                    value={`${currentWeather.wind_speed} km/h`}
                   />
-                  <WindCard
-                    icon="uv-index"
-                    dataLabel="Índice Uv"
-                    value={currentWeather.uvi}
-                  />
-                  <WindCard
-                    icon="humidity"
-                    dataLabel="Umidade"
-                    value={`${currentWeather.humidity} %`}
-                  />
-                </WindDataContainer>
-                <SubTitle title="Previsão 5 dias" />
-                <DailyWeatherContainer>
-                  {dailyWeather
-                    ? Object.values(dailyWeather).map((item: any) => (
-                        <WeatherDailyCard
-                          key={item.dt}
-                          dailyWeatherData={item}
-                        />
-                      ))
-                    : null}
-                </DailyWeatherContainer>
-              </ScrollableContent>
-            )}
+                )}
+                <WindCard
+                  icon="03d"
+                  dataLabel="Visibilidade"
+                  value={`${currentWeather.visibility} m`}
+                />
+                <WindCard
+                  icon="uv-index"
+                  dataLabel="Índice Uv"
+                  value={currentWeather.uvi}
+                />
+                <WindCard
+                  icon="humidity"
+                  dataLabel="Umidade"
+                  value={`${currentWeather.humidity} %`}
+                />
+              </WindDataContainer>
+              <SubTitle title="Previsão 5 dias" />
+              <DailyWeatherContainer>
+                {dailyWeather
+                  ? Object.values(dailyWeather).map((item: any) => (
+                      <WeatherDailyCard key={item.dt} dailyWeatherData={item} />
+                    ))
+                  : null}
+              </DailyWeatherContainer>
+            </ScrollableContent>
+          )}
         </>
       )}
     </Container>
