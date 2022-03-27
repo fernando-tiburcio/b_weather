@@ -2,10 +2,10 @@ import React from "react";
 
 import { WeatherHourlyCard } from "../WeatherHourlyCard";
 
-import { IHourlyWeather } from "../../interfaces";
+import { IHourlyWeatherData } from "../../interfaces";
 import { Container } from "./styles";
 
-export function HourlyWeatherList({ hourlyWeatherData }: IHourlyWeather) {
+export function HourlyWeatherList({ hourlyWeatherData }: IHourlyWeatherData) {
   function renderItem(item: any) {
     return <WeatherHourlyCard hourlyWeatherData={item} />;
   }

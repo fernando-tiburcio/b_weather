@@ -1,10 +1,7 @@
 import React from "react";
 
 import { Title } from "./styles";
-
-interface ITitleProps {
-  title: string;
-}
+import { ITitleProps } from "../../interfaces";
 
 export function SubTitle({ title }: ITitleProps) {
   return (

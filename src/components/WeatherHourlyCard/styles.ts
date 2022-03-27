@@ -1,10 +1,11 @@
+import { RFValue } from 'react-native-responsive-fontsize';
 import styled from 'styled-components/native';
 
 export const Container = styled.SafeAreaView.attrs({
   elevation: 4
 })`
-    width: 80px;
-    height: 110px;
+    width: ${RFValue(80)}px;
+    height: ${RFValue(110)}px;
     border-radius: 6px;
     background-color: ${({theme}) => theme.COLORS.WHITE_BACKGROUND};
     align-items: center;
@@ -14,8 +15,8 @@ export const Container = styled.SafeAreaView.attrs({
 `;
 
 export const WeatherImage = styled.Image`
-  width: 48px;
-  height: 48px;
+  width: ${RFValue(48)}px;
+  height: ${RFValue(48)}px;
 `;
 
 export const TemperatureLabel = styled.Text`

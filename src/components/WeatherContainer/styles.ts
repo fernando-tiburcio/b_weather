@@ -1,7 +1,8 @@
+import { RFPercentage, RFValue } from 'react-native-responsive-fontsize';
 import styled from "styled-components/native";
 
 export const Container = styled.View`
-  height: 280px;
+  height: ${RFPercentage(42)}px;
   min-width: 100%;
 `;
 
@@ -35,8 +36,8 @@ export const FeelsLikeTemperature = styled.Text`
 `;
 
 export const WeatherImage = styled.Image`
-  width: 128px;
-  height: 128px;
+  width: ${RFValue(128)}px;
+  height: ${RFValue(128)}px;
 `;
 
 export const WeatherDescription = styled.Text`

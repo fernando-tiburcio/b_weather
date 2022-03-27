@@ -4,7 +4,6 @@ import * as Location from "expo-location";
 
 import {
   ICurrentWeatherProps,
-  IHourlyWeather,
   IDailyWeather,
 } from "../../interfaces";
 

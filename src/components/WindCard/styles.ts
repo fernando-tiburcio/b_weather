@@ -1,3 +1,4 @@
+import { RFValue } from 'react-native-responsive-fontsize';
 import styled from "styled-components/native";
 
 export const Container = styled.View.attrs({
@@ -12,8 +13,8 @@ export const Container = styled.View.attrs({
 `;
 
 export const WeatherImage = styled.Image`
-  width: 36px;
-  height: 36px;
+  width: ${RFValue(36)}px;
+  height: ${RFValue(36)}px;
   margin-right: 16px;
 `;
 

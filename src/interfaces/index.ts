@@ -27,8 +27,12 @@ export interface IDailyWeatherProps {
   weather: IWeather[];
 }
 
-export interface IHourlyWeather {
+export interface IHourlyWeatherData {
   hourlyWeatherData: ICurrentWeatherProps[]
+}
+
+export interface IHourlyWeatherProps {
+  hourlyWeatherData: ICurrentWeatherProps
 }
 
 export interface IDailyWeather {
@@ -53,7 +57,7 @@ export interface IHeaderProps {
   localName: string;
 }
 
-interface IDailyProps {
+export interface IDailyProps {
   max: number;
   min: number;
 }
@@ -63,4 +67,8 @@ export interface ILocationProps {
     latitude: string;
     longitude: string;
   }
+}
+
+export interface ITitleProps {
+  title: string;
 }

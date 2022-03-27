@@ -1,4 +1,5 @@
 import styled from "styled-components/native";
+import { RFValue} from 'react-native-responsive-fontsize';
 
 export const Container = styled.View`
   width: 98%;
@@ -14,8 +15,8 @@ export const WeatherCard = styled.View`
 `;
 
 export const WeatherImage = styled.Image`
-  width: 36px;
-  height: 36px;
+  width: ${RFValue(36)}px;
+  height: ${RFValue(36)}px;
   margin-right: 10px;
 `;
 

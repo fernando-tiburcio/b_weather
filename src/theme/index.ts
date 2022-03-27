@@ -1,3 +1,5 @@
+import { RFValue } from 'react-native-responsive-fontsize'
+
 export default {
   COLORS: {
     BACKGROUND: '#1D5A93',
@@ -14,11 +16,11 @@ export default {
     BOLD: 'Roboto_700Bold',
   },
   FONT_SIZES: {
-    XS: '10px',
-    SM: '14px',
-    RG: '16px',
-    MD: '20px',
-    BG: '26px',
-    XL: '48px',
+    XS: `${RFValue(10)}px`,
+    SM: `${RFValue(14)}px`,
+    RG: `${RFValue(16)}px`,
+    MD: `${RFValue(20)}px`,
+    BG: `${RFValue(26)}px`,
+    XL: `${RFValue(48)}px`,
   },
 };

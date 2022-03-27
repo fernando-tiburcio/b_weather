@@ -1,12 +1,12 @@
 import React from "react";
 
-import { IHourlyWeather } from "../../interfaces";
+import { IHourlyWeatherProps } from "../../interfaces";
 import { timeToHourMinute } from '../../helpers/convertTimestamp';
 
 import iconsImport from "../../helpers/iconsImport";
 import { Container, WeatherImage, TemperatureLabel, TimeLabel } from "./styles";
 
-export function WeatherHourlyCard({ hourlyWeatherData }: IHourlyWeather) {
+export function WeatherHourlyCard({ hourlyWeatherData }: IHourlyWeatherProps) {
   const { dt, temp, weather } = hourlyWeatherData;
   const { icon } = weather[0];
 
