@@ -1,9 +1,8 @@
 import styled from "styled-components/native";
-import THEME from "../../theme";
 
 export const Container = styled.View`
   width: 172px;
-  background-color: ${THEME.COLORS.WHITE_BACKGROUND};
+  background-color: ${({theme}) => theme.COLORS.WHITE_BACKGROUND};
   margin-top: 6px;
   flex-direction: row;
   justify-content: center;
@@ -21,11 +20,11 @@ export const WeatherDataContainer = styled.View`
 `;
 
 export const WeatherDataLabel = styled.Text`
-  font-size: ${THEME.FONT_SIZES.RG};
-  color: ${THEME.COLORS.DARK_TEXT};
+  font-size: ${({theme}) => theme.FONT_SIZES.RG};
+  color: ${({theme}) => theme.COLORS.DARK_TEXT};
 `;
 
 export const WeatherSubLabel = styled.Text`
-  font-size: ${THEME.FONT_SIZES.XS};
-  color: ${THEME.COLORS.DARK_TEXT};
+  font-size: ${({theme}) => theme.FONT_SIZES.XS};
+  color: ${({theme}) => theme.COLORS.DARK_TEXT};
 `;

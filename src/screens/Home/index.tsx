@@ -14,7 +14,7 @@ import { WeatherContainer } from "../../components/WeatherContainer";
 import { HourlyWeatherList } from "../../components/HourlyWeatherList";
 import { WindCard } from "../../components/WindCard";
 import { WeatherDailyCard } from "../../components/WeatherDailyCard";
-import THEME from "../../theme";
+import { SubTitle } from "../../components/SubTitle";
 import {
   Container,
   ScrollableContent,
@@ -84,16 +84,7 @@ export default function Home() {
           <ScrollableContent>
             <WeatherContainer currentWeather={currentWeather} />
             <HourlyWeatherList hourlyWeatherData={hourlyWeather} />
-            <Text
-              style={{
-                marginTop: 40,
-                marginLeft: 32,
-                marginBottom: 8,
-                color: THEME.COLORS.DARK_TEXT,
-              }}
-            >
-              Vento e ambiente
-            </Text>
+            <SubTitle title="Vento e Ambiente" />
             <WindDataContainer>
               {currentWeather.wind_speed && (
                 <WindCard
@@ -119,9 +110,10 @@ export default function Home() {
               />
             </WindDataContainer>
             <DailyWeatherContainer>
-              <Text style={{ color: THEME.COLORS.DARK_TEXT }}>
+            <SubTitle title="Previsão 5 dias" />
+              {/* <Text style={{ color: THEME.COLORS.DARK_TEXT }}>
                 Previsão 5 dias
-              </Text>
+              </Text> */}
               {dailyWeather
                 ? Object.values(dailyWeather).map((item: any) => (
                     <WeatherDailyCard key={item.dt} dailyWeatherData={item} />

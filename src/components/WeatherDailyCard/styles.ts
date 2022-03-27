@@ -1,5 +1,4 @@
 import styled from "styled-components/native";
-import THEME from "../../theme";
 
 export const Container = styled.View`
   width: 95%;
@@ -7,7 +6,7 @@ export const Container = styled.View`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  padding-horizontal: 32px;
+  padding: 0 32px;
   margin-top: 6px;
 `;
 
@@ -18,12 +17,12 @@ export const WeatherImage = styled.Image`
 `;
 
 export const WeatherDateLabel = styled.Text`
-  font-size: ${THEME.FONT_SIZES.SM};
-  color: ${THEME.COLORS.DARK_TEXT};
+  font-size: ${({ theme }) => theme.FONT_SIZES.SM};
+  color: ${({ theme }) => theme.COLORS.DARK_TEXT};
   margin-right: 24px;
 `;
 
 export const WeatherTemperatureLabel = styled.Text`
-  font-size: ${THEME.FONT_SIZES.SM};
-  color: ${THEME.COLORS.DARK_TEXT};
+  font-size: ${({ theme }) => theme.FONT_SIZES.SM};
+  color: ${({ theme }) => theme.COLORS.DARK_TEXT};
 `;

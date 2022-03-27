@@ -1,5 +1,4 @@
 import styled from "styled-components/native";
-import THEME from "../../theme";
 
 export const Container = styled.View`
   height: 280px;
@@ -24,15 +23,15 @@ export const TemperatureGraphicalData = styled(TemperatureDescription)`
 `;
 
 export const MainTemperature = styled.Text`
-  font-family: ${THEME.FONTS.MEDIUM};
-  font-size: ${THEME.FONT_SIZES.XL};
-  color: ${THEME.COLORS.LIGHT_TEXT};
+  font-family: ${({ theme }) => theme.FONTS.MEDIUM};
+  font-size: ${({ theme }) => theme.FONT_SIZES.XL};
+  color: ${({ theme }) => theme.COLORS.LIGHT_TEXT};
 `;
 
 export const FeelsLikeTemperature = styled.Text`
-  font-family: ${THEME.FONTS.REGULAR};
-  font-size: ${THEME.FONT_SIZES.MD};
-  color: ${THEME.COLORS.LIGHT_TEXT};
+  font-family: ${({ theme }) => theme.FONTS.REGULAR};
+  font-size: ${({ theme }) => theme.FONT_SIZES.MD};
+  color: ${({ theme }) => theme.COLORS.LIGHT_TEXT};
 `;
 
 export const WeatherImage = styled.Image`
@@ -41,8 +40,8 @@ export const WeatherImage = styled.Image`
 `;
 
 export const WeatherDescription = styled.Text`
-  font-size: ${THEME.FONT_SIZES.SM};
-  color: ${THEME.COLORS.LIGHT_TEXT};
+  font-size: ${({ theme }) => theme.FONT_SIZES.SM};
+  color: ${({ theme }) => theme.COLORS.LIGHT_TEXT};
   margin-top: 16px;
   text-align: center;
 `;
@@ -67,7 +66,7 @@ export const MaxTempDayContainer = styled(MinTempDayContainer)`
 `;
 
 export const TemperatureVariationLabel = styled.Text`
-  font-size: ${THEME.FONT_SIZES.SM};
-  color: ${THEME.COLORS.LIGHT_TEXT};
+  font-size: ${({ theme }) => theme.FONT_SIZES.SM};
+  color: ${({ theme }) => theme.COLORS.LIGHT_TEXT};
 `;
 
