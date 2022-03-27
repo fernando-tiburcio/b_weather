@@ -2,6 +2,7 @@ import React from 'react';
 import { SafeAreaView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import AppLoading from "expo-app-loading";
+
 import {
   useFonts,
   Roboto_400Regular,

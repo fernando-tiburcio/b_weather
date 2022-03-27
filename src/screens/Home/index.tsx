@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { ActivityIndicator, Alert, Text } from "react-native";
 import * as Location from "expo-location";
 
+import {API_KEY} from '@env';
 import api from "../../services/api";
 import {
   ICurrentWeather,
@@ -42,7 +43,7 @@ export default function Home() {
         params: {
           lat: location.coords.latitude,
           lon: location.coords.longitude,
-          appid: "ab29605c1d70f56b81f1a0ec66045448",
+          appid: API_KEY,
           units: "metric",
           lang: "pt_br",
           exclude: "minutely,alerts",
@@ -56,12 +57,14 @@ export default function Home() {
         params: {
           lat: location.coords.latitude,
           lon: location.coords.longitude,
-          appid: "ab29605c1d70f56b81f1a0ec66045448",
+          appid: API_KEY,
           limit: 3,
           lang: "pt_br",
         },
       }
     );
+
+    console.log(response.data);
 
     if (response.data && weatherApiLocalization.data) {
       setCurrentWeather(response.data.current);
